@@ -103,7 +103,7 @@ export default function BookPage() {
             </div>
 
             {/* Right: Booking Form */}
-            <div className="bg-zinc-900 border border-zinc-800 p-8">
+            <div className="bg-zinc-900 border border-zinc-800 p-5 sm:p-8">
               <div className="mb-8">
                 <p className="font-display font-bold text-2xl uppercase text-white mb-2">
                   Schedule Your Session
