@@ -54,7 +54,7 @@ export default function BookingForm() {
   const today = new Date().toISOString().split('T')[0];
 
   const inputClass =
-    'w-full bg-zinc-800 border border-zinc-700 text-white px-4 py-3 text-sm placeholder-zinc-600 focus:outline-none focus:border-gold transition-colors';
+    'w-full max-w-full box-border bg-zinc-800 border border-zinc-700 text-white px-4 py-3 text-sm placeholder-zinc-600 focus:outline-none focus:border-gold transition-colors';
   const labelClass =
     'block text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2';
 
