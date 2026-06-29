@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import TestimonialCard from "@/components/TestimonialCard";
 
 const stats = [
   { value: "15+", label: "Years Coaching" },
@@ -12,54 +11,53 @@ const stats = [
 
 const features = [
   {
-    icon: "🎯",
     title: "Fully Customized",
     description:
       "Every program is built from the ground up around your body, your schedule, and your exact goals. Nothing is recycled.",
   },
   {
-    icon: "📲",
     title: "24/7 Direct Support",
     description:
       "Text or email Nolan directly. He responds fast — not days later. You'll never feel lost or on your own.",
   },
   {
-    icon: "🥗",
     title: "Nutrition + Supplements",
     description:
       "Complete diet plans for fat loss or muscle gain, plus a full supplement breakdown built around your lifestyle.",
   },
   {
-    icon: "🏆",
     title: "Multi-Sport Background",
     description:
       "Football, sprinting, basketball, BJJ — Nolan brings real athletic experience to every program he builds.",
   },
 ];
 
-const testimonials = [
+const featured = [
   {
-    quote:
-      "Nolan has consistently monitored my progress throughout the entire 12-week program I purchased. My goal over the 12-week period was to get as lean as possible while maintaining my muscle mass. I have never been so strong and lean in my entire life. My body has been transforming every week and I'm on a straight and narrow path to reaching my goal. Nolan always responds right away to his emails and text messages to make sure I am staying on top of the program, whereas coaches in the past would not get back to me for several days. He has a vast amount of knowledge in nutrition and training. I plan to continue working with Nolan for years to come and I couldn't recommend him more highly!",
     name: "Paul R.",
     program: "12-Week Program",
     goal: "Fat Loss + Muscle Retention",
+    result: "Leanest & strongest of his life",
+    quote:
+      "Nolan has consistently monitored my progress throughout the entire 12-week program I purchased. I have never been so strong and lean in my entire life. Nolan always responds right away to make sure I am staying on top of the program, whereas coaches in the past would not get back to me for several days.",
     image: "/images/client-paul.jpg",
   },
   {
-    quote:
-      "Nolan is amazing! He is always available to answer my questions, and he is always a step ahead by sending me my new customized program to review before the week begins. I know he genuinely cares about my success! It's definitely a plus that he understands the struggle of balancing work and maintaining top fitness levels as he has experienced the same difficulties with so many clients over the years. Awesome Coach!",
     name: "Caroline S.",
     program: "Online Coaching",
     goal: "Body Recomposition",
+    result: "Bikini-competition ready physique",
+    quote:
+      "Nolan is amazing! He is always available to answer my questions, and he is always a step ahead by sending me my new customized program before the week begins. I know he genuinely cares about my success. Awesome Coach!",
     image: "/images/client-caroline.jpg",
   },
   {
-    quote:
-      "Nolan really knows his stuff! He is also deeply philosophical, articulate, and eager to pulverize the psychological barriers that stand in the way of progress. Both my mind and my body are in better shape, thanks to Nolan. Training with this Champion may be the best decision I've ever made.",
     name: "Robert M.",
     program: "Online Coaching",
     goal: "Mind + Body Transformation",
+    result: "Mind & body transformed",
+    quote:
+      "Nolan really knows his stuff! He is also deeply philosophical, articulate, and eager to pulverize the psychological barriers that stand in the way of progress. Both my mind and my body are in better shape, thanks to Nolan.",
     image: "/images/client-robert.jpg",
   },
 ];
@@ -163,7 +161,6 @@ export default function HomePage() {
                 key={f.title}
                 className="p-7 bg-zinc-900 border border-zinc-800 hover:border-gold/40 transition-all duration-300 group"
               >
-                <div className="text-3xl mb-5">{f.icon}</div>
                 <h3 className="font-display font-bold text-xl uppercase text-white mb-3 group-hover:text-gold transition-colors">
                   {f.title}
                 </h3>
@@ -235,7 +232,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Transformations Preview ── */}
+      {/* ── Results ── */}
       <section className="py-28 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -252,40 +249,41 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-            {[
-              {
-                name: "Paul R.",
-                program: "12-Week Program",
-                result: "Leanest & strongest of his life",
-                src: "/images/client-paul.jpg",
-              },
-              {
-                name: "Caroline S.",
-                program: "Online Coaching",
-                result: "Bikini-competition ready physique",
-                src: "/images/client-caroline.jpg",
-              },
-            ].map((t) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+            {featured.map((t) => (
               <div
                 key={t.name}
-                className="relative aspect-square overflow-hidden group border border-zinc-800 hover:border-gold/30 transition-all duration-300"
+                className="group bg-zinc-900 border border-zinc-800 hover:border-gold/30 transition-all duration-300 overflow-hidden flex flex-col"
               >
-                <Image
-                  src={t.src}
-                  alt={`${t.name} transformation`}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="font-display font-bold text-2xl uppercase text-white">
-                    {t.name}
+                <div className="relative aspect-square overflow-hidden">
+                  <Image
+                    src={t.image}
+                    alt={`${t.name} transformation`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-zinc-900 to-transparent" />
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <p className="font-display font-bold text-xl uppercase text-white">
+                        {t.name}
+                      </p>
+                      <p className="text-gold text-xs uppercase tracking-widest mt-0.5">
+                        {t.program}
+                      </p>
+                    </div>
+                    <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-1 font-medium border border-zinc-700 text-center leading-tight">
+                      {t.goal}
+                    </span>
+                  </div>
+                  <p className="text-zinc-400 text-sm font-medium mb-3">
+                    {t.result}
                   </p>
-                  <p className="text-gold text-xs uppercase tracking-widest mt-0.5">
-                    {t.program}
-                  </p>
-                  <p className="text-zinc-400 text-sm mt-1">{t.result}</p>
+                  <blockquote className="text-zinc-500 text-xs leading-relaxed italic border-l-2 border-gold/30 pl-3">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
                 </div>
               </div>
             ))}
@@ -296,44 +294,7 @@ export default function HomePage() {
               href="/transformations"
               className="inline-flex items-center gap-2 text-gold font-bold uppercase text-xs tracking-widest hover:gap-3 transition-all group"
             >
-              View All Transformations{" "}
-              <ArrowRight
-                size={14}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Testimonials ── */}
-      <section className="py-28 bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
-              Success Stories
-            </p>
-            <h2 className="font-display font-bold text-5xl sm:text-6xl uppercase text-white">
-              What Clients Say
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {testimonials.map((t) => (
-              <TestimonialCard
-                key={t.name}
-                name={t.name}
-                program={t.program}
-                goal={t.goal}
-                quote={t.quote}
-              />
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link
-              href="/testimonials"
-              className="inline-flex items-center gap-2 text-gold font-bold uppercase text-xs tracking-widest hover:gap-3 transition-all group"
-            >
-              Read All Success Stories{" "}
+              View All Results{" "}
               <ArrowRight
                 size={14}
                 className="group-hover:translate-x-1 transition-transform"

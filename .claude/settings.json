@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.nolankingtraining.com)",
+      "PowerShell(gh auth status)"
+    ]
+  }
+}
