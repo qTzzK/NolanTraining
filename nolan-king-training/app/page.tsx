@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const stats = [
   { value: "15+", label: "Years Coaching" },
@@ -62,14 +62,6 @@ const featured = [
   },
 ];
 
-const included = [
-  "Fully customized workout program",
-  "Personalized nutrition plan",
-  "Supplement regimen",
-  "Video references for every exercise",
-  "Unlimited text & email support",
-  "Weekly program updates",
-];
 
 export default function HomePage() {
   return (
@@ -144,8 +136,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Features ── */}
-      <section className="py-28 bg-zinc-950">
+      {/* ── Features + Included ── */}
+      <section className="pt-28 pb-16 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
@@ -155,7 +147,8 @@ export default function HomePage() {
               Built Different
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
             {features.map((f) => (
               <div
                 key={f.title}
@@ -170,70 +163,24 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ── What's Included ── */}
-      <section className="py-24 bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
-                Every Program Includes
-              </p>
-              <h2 className="font-display font-bold text-5xl uppercase text-white mb-8">
-                Everything
-                <br />
-                You Need
-              </h2>
-              <ul className="space-y-4">
-                {included.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle
-                      size={18}
-                      className="text-gold flex-shrink-0 mt-0.5"
-                    />
-                    <span className="text-zinc-300 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/services"
-                className="mt-10 inline-flex items-center gap-2 px-8 py-4 bg-gold text-black font-bold text-sm uppercase tracking-widest hover:bg-gold-light transition-colors group"
-              >
-                See All Programs
-                <ArrowRight
-                  size={15}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: "Custom Workouts", val: "Every Week" },
-                { label: "Nutrition Plan", val: "Tailored to You" },
-                { label: "Response Time", val: "Same Day" },
-                { label: "Templates Used", val: "Zero" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="p-6 bg-zinc-800 border border-zinc-700"
-                >
-                  <p className="font-display font-bold text-2xl text-gold mb-1">
-                    {item.val}
-                  </p>
-                  <p className="text-xs uppercase tracking-widest text-zinc-500">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="flex justify-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-black font-bold text-sm uppercase tracking-widest hover:bg-gold-light transition-colors group"
+            >
+              See All Programs
+              <ArrowRight
+                size={15}
+                className="group-hover:translate-x-1 transition-transform"
+              />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ── Results ── */}
-      <section className="py-28 bg-zinc-950">
+      <section className="pt-16 pb-28 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
