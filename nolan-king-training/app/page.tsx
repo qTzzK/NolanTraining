@@ -81,12 +81,12 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-16">
           <p className="text-gold text-xs font-bold uppercase tracking-[0.35em] mb-6 opacity-0 animate-fade-in">
-            Elite Online Coaching · Available Worldwide
+            Nolan King · Available Worldwide
           </p>
           <h1 className="font-display font-bold text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] uppercase leading-none text-white mb-6 opacity-0 animate-fade-up">
-            Train Like
+            Elite Online
             <br />
-            <span className="text-gold">A Champion</span>
+            <span className="text-gold">Coaching</span>
           </h1>
           <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed opacity-0 animate-fade-up delay-200">
             Personalized programs, expert nutrition, and direct access to Nolan
