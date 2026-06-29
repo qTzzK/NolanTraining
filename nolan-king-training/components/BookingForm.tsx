@@ -62,7 +62,7 @@ export default function BookingForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Date & Time */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="min-w-0">
+        <div className="min-w-0 overflow-hidden">
           <label className={labelClass}>
             Date <span className="text-gold">*</span>
           </label>
