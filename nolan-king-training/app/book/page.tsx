@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CheckCircle, Clock, Video, Phone } from "lucide-react";
+import BookingForm from "@/components/BookingForm";
 
 const whatToExpect = [
   "Discuss your current fitness level and training history",
@@ -101,49 +102,18 @@ export default function BookPage() {
               </div>
             </div>
 
-            {/* Right: Booking Embed Placeholder */}
-            <div className="bg-zinc-900 border border-zinc-800 flex flex-col items-center justify-center p-12 min-h-[500px]">
-              <div className="text-center mb-8">
-                <p className="font-display font-bold text-2xl uppercase text-white mb-3">
+            {/* Right: Booking Form */}
+            <div className="bg-zinc-900 border border-zinc-800 p-8">
+              <div className="mb-8">
+                <p className="font-display font-bold text-2xl uppercase text-white mb-2">
                   Schedule Your Session
                 </p>
-                <p className="text-zinc-500 text-sm max-w-xs mx-auto">
-                  Select a date and time that works for you. You&apos;ll receive
-                  a confirmation email with call details.
+                <p className="text-zinc-500 text-sm">
+                  Select a date and time, fill in your details, and complete
+                  payment to lock in your spot.
                 </p>
               </div>
-
-              {/* Calendar embed placeholder — replace with Calendly or Cal.com */}
-              <div className="w-full bg-zinc-800 border border-zinc-700 rounded-none p-8 text-center">
-                <div className="text-zinc-600 text-xs font-display uppercase tracking-widest mb-4">
-                  Calendar Embed
-                </div>
-                <p className="text-zinc-500 text-sm mb-6">
-                  Connect a Calendly or Cal.com link here to enable live booking.
-                </p>
-                {/* Placeholder button — will be replaced by embed */}
-                <a
-                  href="https://www.nolankingtraining.com/book-online"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-8 py-4 bg-gold text-black font-bold uppercase tracking-widest text-sm hover:bg-gold-light transition-colors"
-                >
-                  Book on Current Site
-                </a>
-              </div>
-
-              <p className="text-zinc-600 text-xs text-center mt-6 max-w-xs">
-                Prefer to reach out directly? Email or DM{" "}
-                <a
-                  href="https://www.instagram.com/king.nolan"
-                  className="text-gold hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  @king.nolan
-                </a>{" "}
-                on Instagram.
-              </p>
+              <BookingForm />
             </div>
           </div>
         </div>

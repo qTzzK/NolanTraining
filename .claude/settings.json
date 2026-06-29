@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:www.nolankingtraining.com)",
-      "PowerShell(gh auth status)"
+      "PowerShell(gh auth status)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/api/store/checkout/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/api/store/create-payment-intent/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/api/store/update-payment-intent/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/api/store/webhook/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/checkout/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/lib/**)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\keano\\\\KingNolanTraining\\\\nolan-king-training\\\\app\\\\api\\\\checkout\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\keano\\\\KingNolanTraining\\\\nolan-king-training\\\\app\\\\checkout\\\\success\")"
     ]
   }
 }

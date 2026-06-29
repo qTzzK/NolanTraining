@@ -1,12 +1,14 @@
-import Link from "next/link";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import Link from "next/link";
+import CheckoutButton from "@/components/CheckoutButton";
 
+// Update priceInCents for each plan before going live
 const plans = [
   {
     name: "Basic Training Plan",
     duration: "One-Time",
-    price: "Contact for pricing",
-    priceNote: "",
+    price: "$97",
+    priceInCents: 9700,
     description:
       "A customized standalone workout program — no ongoing coaching. Great if you're self-driven and just need the right plan.",
     features: [
@@ -21,8 +23,8 @@ const plans = [
   {
     name: "4-Week Program",
     duration: "4 Weeks",
-    price: "Contact for pricing",
-    priceNote: "",
+    price: "$197",
+    priceInCents: 19700,
     description:
       "A focused 4-week block with full coaching support. Build momentum, establish habits, and see early results.",
     features: [
@@ -38,8 +40,8 @@ const plans = [
   {
     name: "8-Week Program",
     duration: "8 Weeks",
-    price: "Contact for pricing",
-    priceNote: "",
+    price: "$347",
+    priceInCents: 34700,
     description:
       "Two months of serious work with consistent updates and full access to Nolan. See real, measurable change.",
     features: [
@@ -56,8 +58,8 @@ const plans = [
   {
     name: "12-Week Program",
     duration: "12 Weeks",
-    price: "Contact for pricing",
-    priceNote: "",
+    price: "$497",
+    priceInCents: 49700,
     description:
       "The most popular option. Three months is where transformations happen. This is the program Paul and Caroline used.",
     features: [
@@ -75,8 +77,8 @@ const plans = [
   {
     name: "1-Year Unlimited",
     duration: "12 Months",
-    price: "Contact for pricing",
-    priceNote: "",
+    price: "$997",
+    priceInCents: 99700,
     description:
       "The full commitment. Unlimited coaching, continuous program evolution, and a coach who knows your body inside and out.",
     features: [
@@ -93,8 +95,8 @@ const plans = [
   {
     name: "Nutrition Coaching",
     duration: "Ongoing",
-    price: "Contact for pricing",
-    priceNote: "",
+    price: "$147",
+    priceInCents: 14700,
     description:
       "Standalone nutrition coaching for those who have training covered but need their diet dialed in.",
     features: [
@@ -113,6 +115,7 @@ const consultation = {
   name: "Phone or Video Consultation",
   duration: "30 Minutes",
   price: "$135",
+  priceInCents: 13500,
   description:
     "Not ready to commit to a full program? Book a one-on-one call with Nolan to discuss your goals, ask questions, and get expert guidance.",
   features: [
@@ -168,9 +171,12 @@ export default function ServicesPage() {
                   <p className="text-gold text-xs font-bold uppercase tracking-widest mb-2">
                     {plan.duration}
                   </p>
-                  <h2 className="font-display font-bold text-2xl uppercase text-white mb-3">
+                  <h2 className="font-display font-bold text-2xl uppercase text-white mb-1">
                     {plan.name}
                   </h2>
+                  <p className="font-display font-bold text-3xl text-gold mb-3">
+                    {plan.price}
+                  </p>
                   <p className="text-zinc-500 text-sm leading-relaxed">
                     {plan.description}
                   </p>
@@ -188,20 +194,12 @@ export default function ServicesPage() {
                   ))}
                 </ul>
 
-                <Link
-                  href="/book"
-                  className={`inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-xs uppercase tracking-widest transition-all group ${
-                    plan.highlight
-                      ? "bg-gold text-black hover:bg-gold-light"
-                      : "border border-zinc-700 text-white hover:border-gold hover:text-gold"
-                  }`}
-                >
-                  {plan.cta}
-                  <ArrowRight
-                    size={13}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
-                </Link>
+                <CheckoutButton
+                  programName={plan.name}
+                  priceInCents={plan.priceInCents}
+                  highlight={plan.highlight}
+                  label={plan.cta}
+                />
               </div>
             ))}
           </div>
@@ -249,16 +247,12 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href="/book"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-black font-bold text-sm uppercase tracking-widest hover:bg-gold-light transition-colors group"
-                >
-                  Book Now
-                  <ArrowRight
-                    size={14}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
-                </Link>
+                <CheckoutButton
+                  programName={consultation.name}
+                  priceInCents={consultation.priceInCents}
+                  highlight={true}
+                  label="Book Now"
+                />
               </div>
             </div>
           </div>
