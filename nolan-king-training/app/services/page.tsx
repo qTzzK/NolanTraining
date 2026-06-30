@@ -1,134 +1,20 @@
 import { ArrowRight, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import CheckoutButton from "@/components/CheckoutButton";
+import { supabase } from "@/lib/supabase";
+import type { Plan } from "@/lib/supabase";
 
-// Update priceInCents for each plan before going live
-const plans = [
-  {
-    name: "Basic Training Plan",
-    duration: "One-Time",
-    price: "$220",
-    priceInCents: 22000,
-    description:
-      "A customized standalone workout program — no ongoing coaching. Great if you're self-driven and just need the right plan.",
-    features: [
-      "Custom workout program",
-      "Exercise video references",
-      "Designed around your schedule",
-      "Delivered digitally",
-    ],
-    cta: "Get Started",
-    highlight: false,
-  },
-  {
-    name: "4-Week Program",
-    duration: "4 Weeks",
-    price: "$320",
-    priceInCents: 32000,
-    description:
-      "A focused 4-week block with full coaching support. Build momentum, establish habits, and see early results.",
-    features: [
-      "Customized workout program",
-      "Personalized diet plan",
-      "Supplement regimen",
-      "24/7 text & email support",
-      "Weekly check-ins",
-    ],
-    cta: "Get Started",
-    highlight: false,
-  },
-  {
-    name: "8-Week Program",
-    duration: "8 Weeks",
-    price: "$520",
-    priceInCents: 52000,
-    description:
-      "Two months of serious work with consistent updates and full access to Nolan. See real, measurable change.",
-    features: [
-      "Customized workout program",
-      "Personalized diet plan",
-      "Supplement regimen",
-      "24/7 text & email support",
-      "Bi-weekly program updates",
-      "Progress tracking",
-    ],
-    cta: "Get Started",
-    highlight: false,
-  },
-  {
-    name: "12-Week Program",
-    duration: "12 Weeks",
-    price: "$720",
-    priceInCents: 72000,
-    description:
-      "The most popular option. Three months is where transformations happen. This is the program Paul and Caroline used.",
-    features: [
-      "Customized workout program",
-      "Personalized diet plan",
-      "Supplement regimen",
-      "24/7 text & email support",
-      "Weekly program updates",
-      "Full progress tracking",
-      "Nutrition macro breakdown",
-    ],
-    cta: "Get Started",
-    highlight: true,
-  },
-  {
-    name: "1-Year Unlimited",
-    duration: "12 Months",
-    price: "$2,520",
-    priceInCents: 252000,
-    description:
-      "The full commitment. Unlimited coaching, continuous program evolution, and a coach who knows your body inside and out.",
-    features: [
-      "Everything in 12-Week Program",
-      "Unlimited program revisions",
-      "Ongoing nutrition adjustments",
-      "Priority response time",
-      "Monthly strategy calls",
-      "Long-term programming",
-    ],
-    cta: "Get Started",
-    highlight: false,
-  },
-  {
-    name: "Nutrition Coaching",
-    duration: "Ongoing",
-    price: "$220/Monthly",
-    priceInCents: 22000,
-    description:
-      "Standalone nutrition coaching for those who have training covered but need their diet dialed in.",
-    features: [
-      "Custom meal plan",
-      "Macro breakdown",
-      "Supplement recommendations",
-      "Flexible eating strategies",
-      "Ongoing adjustments",
-    ],
-    cta: "Get Started",
-    highlight: false,
-  },
-];
+export const dynamic = "force-dynamic";
 
-const consultation = {
-  name: "Phone or Video Consultation",
-  duration: "30 Minutes",
-  price: "$135",
-  priceInCents: 13500,
-  description:
-    "Not ready to commit to a full program? Book a one-on-one call with Nolan to discuss your goals, ask questions, and get expert guidance.",
-  features: [
-    "30-minute 1-on-1 session",
-    "Phone or video — your choice",
-    "Goal assessment",
-    "Program recommendation",
-    "Nutrition overview",
-    "No upsell pressure",
-  ],
-};
+export default async function ServicesPage() {
+  const { data: allPlans } = await supabase
+    .from("plans")
+    .select("*")
+    .order("sort_order", { ascending: true });
 
-export default function ServicesPage() {
+  const plans: Plan[] = (allPlans ?? []).filter((p: Plan) => p.type === "program");
+  const consultationRow: Plan | undefined = (allPlans ?? []).find((p: Plan) => p.type === "consultation");
+
   return (
     <>
       {/* Header */}
@@ -153,7 +39,7 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {plans.map((plan) => (
               <div
-                key={plan.name}
+                key={plan.id}
                 className={`relative flex flex-col p-8 border transition-all duration-300 ${
                   plan.highlight
                     ? "bg-zinc-900 border-gold shadow-[0_0_40px_rgba(201,168,76,0.1)]"
@@ -196,7 +82,7 @@ export default function ServicesPage() {
 
                 <CheckoutButton
                   programName={plan.name}
-                  priceInCents={plan.priceInCents}
+                  priceInCents={plan.price_in_cents}
                   highlight={plan.highlight}
                   label={plan.cta}
                 />
@@ -207,57 +93,59 @@ export default function ServicesPage() {
       </section>
 
       {/* Consultation */}
-      <section className="py-20 bg-zinc-900 border-y border-zinc-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
-              Not Sure Where to Start?
-            </p>
-            <h2 className="font-display font-bold text-4xl sm:text-5xl uppercase text-white">
-              Book a Consultation
-            </h2>
-          </div>
-          <div className="bg-zinc-950 border border-zinc-800 p-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-              <div>
-                <div className="flex items-baseline gap-3 mb-4">
-                  <p className="font-display font-bold text-5xl text-gold">
-                    {consultation.price}
-                  </p>
-                  <p className="text-zinc-500 text-sm uppercase tracking-widest">
-                    / {consultation.duration}
+      {consultationRow && (
+        <section className="py-20 bg-zinc-900 border-y border-zinc-800">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
+                Not Sure Where to Start?
+              </p>
+              <h2 className="font-display font-bold text-4xl sm:text-5xl uppercase text-white">
+                Book a Consultation
+              </h2>
+            </div>
+            <div className="bg-zinc-950 border border-zinc-800 p-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                <div>
+                  <div className="flex items-baseline gap-3 mb-4">
+                    <p className="font-display font-bold text-5xl text-gold">
+                      {consultationRow.price}
+                    </p>
+                    <p className="text-zinc-500 text-sm uppercase tracking-widest">
+                      / {consultationRow.duration}
+                    </p>
+                  </div>
+                  <h3 className="font-display font-bold text-2xl uppercase text-white mb-3">
+                    {consultationRow.name}
+                  </h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    {consultationRow.description}
                   </p>
                 </div>
-                <h3 className="font-display font-bold text-2xl uppercase text-white mb-3">
-                  {consultation.name}
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  {consultation.description}
-                </p>
-              </div>
-              <div>
-                <ul className="space-y-3 mb-8">
-                  {consultation.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5">
-                      <CheckCircle
-                        size={15}
-                        className="text-gold flex-shrink-0 mt-0.5"
-                      />
-                      <span className="text-zinc-300 text-sm">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <CheckoutButton
-                  programName={consultation.name}
-                  priceInCents={consultation.priceInCents}
-                  highlight={true}
-                  label="Book Now"
-                />
+                <div>
+                  <ul className="space-y-3 mb-8">
+                    {consultationRow.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5">
+                        <CheckCircle
+                          size={15}
+                          className="text-gold flex-shrink-0 mt-0.5"
+                        />
+                        <span className="text-zinc-300 text-sm">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <CheckoutButton
+                    programName={consultationRow.name}
+                    priceInCents={consultationRow.price_in_cents}
+                    highlight={true}
+                    label="Book Now"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* FAQ Teaser */}
       <section className="py-20 bg-zinc-950">

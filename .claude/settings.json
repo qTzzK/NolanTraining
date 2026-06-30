@@ -11,7 +11,13 @@
       "Read(//c/Users/keano/GGT Web/ggt-next/app/checkout/**)",
       "Read(//c/Users/keano/GGT Web/ggt-next/lib/**)",
       "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\keano\\\\KingNolanTraining\\\\nolan-king-training\\\\app\\\\api\\\\checkout\")",
-      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\keano\\\\KingNolanTraining\\\\nolan-king-training\\\\app\\\\checkout\\\\success\")"
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\keano\\\\KingNolanTraining\\\\nolan-king-training\\\\app\\\\checkout\\\\success\")",
+      "Bash(ls -la \"C:\\\\Users\\\\keano\\\\GGT Web\\\\ggt-next\\\\\" | head -30)",
+      "Read(//c/Users/keano/GGT Web/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/api/admin/login/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/api/admin/session/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/admin/**)",
+      "Read(//c/Users/keano/GGT Web/ggt-next/app/api/admin/logout/**)"
     ]
   }
 }
