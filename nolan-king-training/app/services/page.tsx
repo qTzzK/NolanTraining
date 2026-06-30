@@ -7,8 +7,8 @@ const plans = [
   {
     name: "Basic Training Plan",
     duration: "One-Time",
-    price: "$97",
-    priceInCents: 9700,
+    price: "$220",
+    priceInCents: 22000,
     description:
       "A customized standalone workout program — no ongoing coaching. Great if you're self-driven and just need the right plan.",
     features: [
@@ -23,8 +23,8 @@ const plans = [
   {
     name: "4-Week Program",
     duration: "4 Weeks",
-    price: "$197",
-    priceInCents: 19700,
+    price: "$320",
+    priceInCents: 32000,
     description:
       "A focused 4-week block with full coaching support. Build momentum, establish habits, and see early results.",
     features: [
@@ -40,8 +40,8 @@ const plans = [
   {
     name: "8-Week Program",
     duration: "8 Weeks",
-    price: "$347",
-    priceInCents: 34700,
+    price: "$520",
+    priceInCents: 52000,
     description:
       "Two months of serious work with consistent updates and full access to Nolan. See real, measurable change.",
     features: [
@@ -58,8 +58,8 @@ const plans = [
   {
     name: "12-Week Program",
     duration: "12 Weeks",
-    price: "$497",
-    priceInCents: 49700,
+    price: "$720",
+    priceInCents: 72000,
     description:
       "The most popular option. Three months is where transformations happen. This is the program Paul and Caroline used.",
     features: [
@@ -77,8 +77,8 @@ const plans = [
   {
     name: "1-Year Unlimited",
     duration: "12 Months",
-    price: "$997",
-    priceInCents: 99700,
+    price: "$2,520",
+    priceInCents: 252000,
     description:
       "The full commitment. Unlimited coaching, continuous program evolution, and a coach who knows your body inside and out.",
     features: [
@@ -95,8 +95,8 @@ const plans = [
   {
     name: "Nutrition Coaching",
     duration: "Ongoing",
-    price: "$147",
-    priceInCents: 14700,
+    price: "$220/Monthly",
+    priceInCents: 22000,
     description:
       "Standalone nutrition coaching for those who have training covered but need their diet dialed in.",
     features: [
