@@ -3,20 +3,23 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 const COOKIE_NAME = "nk_admin_session";
-if (!process.env.SESSION_SECRET) throw new Error("SESSION_SECRET env var is required");
-const secret = new TextEncoder().encode(process.env.SESSION_SECRET);
+
+function getSecret(): Uint8Array {
+  if (!process.env.SESSION_SECRET) throw new Error("SESSION_SECRET env var is required");
+  return new TextEncoder().encode(process.env.SESSION_SECRET);
+}
 
 export async function createSessionToken(): Promise<string> {
   return new SignJWT({ admin: true })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("7d")
-    .sign(secret);
+    .sign(getSecret());
 }
 
 export async function verifySessionToken(token: string): Promise<boolean> {
   try {
-    await jwtVerify(token, secret);
+    await jwtVerify(token, getSecret());
     return true;
   } catch {
     return false;
